@@ -18,9 +18,7 @@ jobs:
         with:
           node-version: 24.x
           cache: "yarn"
-
-      - name: Install frontend dependencies
-        run: yarn install --immutable
+          working-directory: ./app
 
       # TODO: Test frontend
 
