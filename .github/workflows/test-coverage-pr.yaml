@@ -10,14 +10,31 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Set Node.js 24.x
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.x
+          cache: "yarn"
+
+      - name: Install frontend dependencies
+        run: yarn install --immutable
+
+      # TODO: Test frontend
+
+      - name: Build Frontend
+        id: build-frontend
+        run: yarn build
+
       - name: Setup Go
         uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5
         with:
           go-version-file: go.mod
       - name: Install dependencies
         run: go mod vendor
-      # Add tests for frontend
-      #
+
       # Need to build frontend also for this to work, due to filesystem embedding
       #      - name: Build Frontend
       #        id: build-frontend
