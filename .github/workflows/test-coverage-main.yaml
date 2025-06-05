@@ -1,0 +1,36 @@
+name: Go Test Coverage Report On Main Branch
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+      - name: Setup Go
+        uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5
+        with:
+          go-version-file: go.mod
+      - name: Install dependencies
+        run: go mod vendor
+      - name: Build Frontend
+        id: build-frontend
+        run: go build -v -a -installsuffix cgo -o runtime_binary ./cmd/server
+      - name: Test with the Go CLI
+        id: test
+        run: go test -coverprofile=unit.coverage.out ./...
+      - name: Upload coverage report
+        id: coverage
+        env:
+          CODACY_API_TOKEN: ${{ secrets.CODACY_API_TOKEN }}
+          CODACY_ORGANIZATION_PROVIDER: gh
+          CODACY_USERNAME: ${{ github.repository_owner }}
+          CODACY_PROJECT_NAME: ${{ github.event.repository.name }}
+        run: |
+          bash <(curl -Ls https://coverage.codacy.com/get.sh) report \
+              --force-coverage-parser go -r unit.coverage.out
