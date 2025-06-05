@@ -24,7 +24,7 @@ jobs:
 
       - name: Build Frontend
         id: build-frontend
-        run: yarn build
+        run: yarn --cwd ./app build
 
       - name: report
         uses: actions/github-script@5ee2b97722aeebb4c5d5c867345a6745cd868065
