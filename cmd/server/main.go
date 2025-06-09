@@ -6,7 +6,7 @@ import (
 	"github.com/danielgtaylor/huma/v2"
 	"github.com/go-chi/chi/v5"
 	"github.com/ponrove/configura"
-	"github.com/ponrove/ponrove-backend/pkg/config"
+	"github.com/ponrove/ponrove-frontend/pkg/config"
 	"github.com/ponrove/ponrove-frontend/pkg/webclient"
 	"github.com/ponrove/ponrunner"
 	"github.com/rs/zerolog/log"
@@ -23,7 +23,7 @@ func main() {
 
 	// Start the runtime with the provided configuration and API bundles.
 	err = ponrunner.Start(ctx, cfg, router, func(c configura.Config, r chi.Router, a huma.API) error {
-		webclient.Register(r)
+		webclient.Register(cfg, r)
 		return nil
 	})
 	if err != nil {

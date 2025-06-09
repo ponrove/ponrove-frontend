@@ -7,15 +7,23 @@ import (
 	"testing"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/ponrove/configura"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
+func newDefaultConfig() *configura.ConfigImpl {
+	cfg := configura.NewConfigImpl()
+	cfg.RegString[WEBCLIENT_APP_BUILD_DIR] = "./_build"
+	return cfg
+}
+
 // TestRegister_NoError ensures that the Register function can be called without returning an error.
 // This is a basic sanity check for the registration process itself.
 func TestRegister_NoError(t *testing.T) {
+	cfg := newDefaultConfig()
 	router := chi.NewRouter()
-	err := Register(router)
+	err := Register(cfg, router)
 	require.NoError(t, err, "Register should not return an error")
 }
 
@@ -40,8 +48,9 @@ func TestRegister_NoError(t *testing.T) {
 // - `_app/test_app_file.js`: `console.log("mock app file");`
 // - `existing_file.txt`: `This is a mock existing file.`
 func TestHandlerExecution(t *testing.T) {
+	cfg := newDefaultConfig()
 	router := chi.NewRouter()
-	err := Register(router)
+	err := Register(cfg, router)
 	require.NoError(t, err, "Register should not return an error")
 
 	// Helper function to make requests and check responses
