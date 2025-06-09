@@ -6,7 +6,11 @@ import { defineConfig } from 'vite';
 export default defineConfig(({ mode }) => ({
 	plugins: [tailwindcss(), sveltekit()],
 	test: {
-		workspace: [
+  	coverage: {
+  	  provider: 'v8',
+    	reporter: ['json', 'clover']
+  	},
+		projects: [
 			{
 				extends: './vite.config.ts',
 				plugins: [svelteTesting()],
@@ -16,7 +20,7 @@ export default defineConfig(({ mode }) => ({
 					clearMocks: true,
 					include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
 					exclude: ['src/lib/server/**'],
-					setupFiles: ['./vitest-setup-client.ts']
+					setupFiles: ['./vitest-setup-client.ts'],
 				},
 				resolve: {
           conditions: mode === 'test' ? ['browser'] : [],
