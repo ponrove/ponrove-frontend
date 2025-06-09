@@ -1,12 +1,50 @@
-name: Go Test Coverage Report On Main Branch
+name: Webclient Test & Build On Main Branch
 on:
   push:
     branches:
       - "main"
 
 jobs:
-  test:
+  frontend:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Set Node.js 24.x
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.x
+
+      - name: Yarn Install
+        id: yarn-install
+        run: yarn --cwd ./app install --immutable
+
+      - name: Run Tests
+        id: test
+        run: yarn --cwd ./app test --coverage
+
+      - name: Upload coverage report
+        if: always()
+        id: coverage-frontend
+        env:
+          CODACY_API_TOKEN: ${{ secrets.CODACY_API_TOKEN }}
+          CODACY_ORGANIZATION_PROVIDER: gh
+          CODACY_USERNAME: ${{ github.repository_owner }}
+          CODACY_PROJECT_NAME: ${{ github.event.repository.name }}
+        run: |
+          bash <(curl -Ls https://coverage.codacy.com/get.sh) report \
+              --partial \
+              -r ./app/coverage/coverage-final.json \
+              -r ./app/coverage/clover.xml
+
+  filserver:
+    runs-on: ubuntu-latest
+    needs: frontend
     permissions:
       contents: read
       pull-requests: write
@@ -18,14 +56,16 @@ jobs:
           go-version-file: go.mod
       - name: Install dependencies
         run: go mod vendor
-      - name: Build Frontend
-        id: build-frontend
+      - name: Build Server
+        id: build-server
         run: go build -v -a -installsuffix cgo -o runtime_binary ./cmd/server
       - name: Test with the Go CLI
+        if: always()
         id: test
         run: go test -coverprofile=unit.coverage.out ./...
       - name: Upload coverage report
-        id: coverage
+        if: always()
+        id: coverage-backend
         env:
           CODACY_API_TOKEN: ${{ secrets.CODACY_API_TOKEN }}
           CODACY_ORGANIZATION_PROVIDER: gh
@@ -33,4 +73,14 @@ jobs:
           CODACY_PROJECT_NAME: ${{ github.event.repository.name }}
         run: |
           bash <(curl -Ls https://coverage.codacy.com/get.sh) report \
-              --force-coverage-parser go -r unit.coverage.out
+              --partial --force-coverage-parser go -r unit.coverage.out
+      - name: Finish coverage report
+        if: always()
+        id: coverage-final
+        env:
+          CODACY_API_TOKEN: ${{ secrets.CODACY_API_TOKEN }}
+          CODACY_ORGANIZATION_PROVIDER: gh
+          CODACY_USERNAME: ${{ github.repository_owner }}
+          CODACY_PROJECT_NAME: ${{ github.event.repository.name }}
+        run: |
+          bash <(curl -Ls https://coverage.codacy.com/get.sh) final
