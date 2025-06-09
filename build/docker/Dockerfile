@@ -23,8 +23,10 @@ FROM scratch
 # Build args
 ARG COMMIT_SHA
 ENV COMMIT_SHA="${COMMIT_SHA:-No COMMIT_SHA}"
+ENV WEBCLIENT_APP_BUILD_DIR="/build"
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /workspace/runtime_binary ./
+COPY --from=node-builder /workspace/build/ /build/
 EXPOSE 8080
 ENTRYPOINT ["./runtime_binary"]
