@@ -18,7 +18,6 @@ jobs:
         with:
           node-version: 24.x
           cache: "yarn"
-          cache-dependency-path: app/yarn.lock
 
         # Temporary to test the cache config
       - name: Cache Folder
@@ -27,12 +26,6 @@ jobs:
         # Temporary to test the cache config
       - name: ls cache folder
         run: ls -la ${{ steps.cache-folder.outputs.stdout }}
-
-      - name: ls berry cache folder
-        run: ls -la ~/.yarn/berry/cache
-
-      - name: ls .yarn folder
-        run: ls -la .yarn && ls -la ./app/.yarn
 
       - name: Yarn Install
         id: yarn-install
