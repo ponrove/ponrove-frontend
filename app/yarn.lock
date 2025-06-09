@@ -858,6 +858,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/svelte@npm:^9.0.6":
+  version: 9.0.6
+  resolution: "@storybook/svelte@npm:9.0.6"
+  dependencies:
+    ts-dedent: "npm:^2.0.0"
+    type-fest: "npm:~2.19"
+  peerDependencies:
+    storybook: ^9.0.6
+    svelte: ^5.0.0
+  checksum: 10c0/e0eb21bf87036ba7faf0005ceec23a838dc5aabc8dd5806b1e10adfbc31055a81e88adbe051322ec0defb4c688c65b155c44838acda36438a75cf88a02615865
+  languageName: node
+  linkType: hard
+
 "@storybook/sveltekit@npm:^9.0.5":
   version: 9.0.5
   resolution: "@storybook/sveltekit@npm:9.0.5"
@@ -1224,12 +1237,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20":
-  version: 20.17.57
-  resolution: "@types/node@npm:20.17.57"
+"@types/node@npm:^22.15.30":
+  version: 22.15.30
+  resolution: "@types/node@npm:22.15.30"
   dependencies:
-    undici-types: "npm:~6.19.2"
-  checksum: 10c0/c04f3b6c4f335ad50bd3af62cd9e64a86c355cb6b363cb0e618511db4c6801c8539781c3786076eca6f56e999d6c7fc4748e43393a107aad57e65e3ffd1f73bf
+    undici-types: "npm:~6.21.0"
+  checksum: 10c0/ca330ac0e7fd502686d6df115fcc606aba46fd334220f749bbba2f639accdadcb23f7900603ceccdc8240be736739cad5c0b87c0fa92c9255a4dff245f07d664
   languageName: node
   linkType: hard
 
@@ -1607,6 +1620,7 @@ __metadata:
     "@eslint/compat": "npm:^1.2.5"
     "@eslint/js": "npm:^9.18.0"
     "@storybook/addon-svelte-csf": "npm:^5.0.3"
+    "@storybook/svelte": "npm:^9.0.6"
     "@storybook/sveltekit": "npm:^9.0.5"
     "@sveltejs/adapter-static": "npm:^3.0.8"
     "@sveltejs/kit": "npm:^2.16.0"
@@ -1614,7 +1628,7 @@ __metadata:
     "@tailwindcss/vite": "npm:^4.0.0"
     "@testing-library/jest-dom": "npm:^6.6.3"
     "@testing-library/svelte": "npm:^5.2.4"
-    "@types/node": "npm:^20"
+    "@types/node": "npm:^22.15.30"
     "@vitest/coverage-v8": "npm:3.2.1"
     eslint: "npm:^9.18.0"
     eslint-config-prettier: "npm:^10.0.1"
@@ -1623,9 +1637,9 @@ __metadata:
     globals: "npm:^16.0.0"
     jsdom: "npm:^26.0.0"
     prettier: "npm:^3.4.2"
-    prettier-plugin-svelte: "npm:^3.3.3"
+    prettier-plugin-svelte: "npm:^3.4.0"
     prettier-plugin-tailwindcss: "npm:^0.6.11"
-    storybook: "npm:^9.0.5"
+    storybook: "npm:^9.0.6"
     svelte: "npm:^5.0.0"
     svelte-check: "npm:^4.0.0"
     tailwindcss: "npm:^4.0.0"
@@ -3638,7 +3652,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-plugin-svelte@npm:^3.3.3":
+"prettier-plugin-svelte@npm:^3.4.0":
   version: 3.4.0
   resolution: "prettier-plugin-svelte@npm:3.4.0"
   peerDependencies:
@@ -4060,9 +4074,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook@npm:^9.0.5":
-  version: 9.0.5
-  resolution: "storybook@npm:9.0.5"
+"storybook@npm:^9.0.6":
+  version: 9.0.6
+  resolution: "storybook@npm:9.0.6"
   dependencies:
     "@storybook/global": "npm:^5.0.0"
     "@testing-library/jest-dom": "npm:^6.6.3"
@@ -4082,7 +4096,7 @@ __metadata:
       optional: true
   bin:
     storybook: ./bin/index.cjs
-  checksum: 10c0/4ab6c2c0df6e7ec020e5adc6771d1687ac9e7f6f04b9146bfb82cc5118a65cf1292943c3fcbe737e2aea1548309c0be6f2e0b7db1db578cab71efcf016af9d5e
+  checksum: 10c0/8e0ff615997b806d6d85f0c6813119cdf1e35a4ef03a31c3355aa6cdc35c12a8c1e2b9e49d1dc0e912769ec417aa73a7def249782d8b2f042dabddc78a44b3f8
   languageName: node
   linkType: hard
 
@@ -4465,10 +4479,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.19.2":
-  version: 6.19.8
-  resolution: "undici-types@npm:6.19.8"
-  checksum: 10c0/078afa5990fba110f6824823ace86073b4638f1d5112ee26e790155f481f2a868cc3e0615505b6f4282bdf74a3d8caad715fd809e870c2bb0704e3ea6082f344
+"undici-types@npm:~6.21.0":
+  version: 6.21.0
+  resolution: "undici-types@npm:6.21.0"
+  checksum: 10c0/c01ed51829b10aa72fc3ce64b747f8e74ae9b60eafa19a7b46ef624403508a54c526ffab06a14a26b3120d055e1104d7abe7c9017e83ced038ea5cf52f8d5e04
   languageName: node
   linkType: hard
 
