@@ -1,4 +1,4 @@
-name: Go Test Coverage Report On Pull Request
+name: Webclient Test & Build On Pull Request
 on:
   pull_request:
 
@@ -20,9 +20,17 @@ jobs:
           cache: "yarn"
           cache-dependency-path: app/yarn.lock
 
+        # Temporary to test the cache config
+      - name: Cache Folder
+        id: cache-folder
+        run: yarn config get cacheFolder
+        # Temporary to test the cache config
+      - name: ls cache folder
+        run: ls -la ${{ steps.cache-folder.outputs.stdout }}
+
       - name: Yarn Install
         id: yarn-install
-        run: yarn --cwd ./app install
+        run: yarn --cwd ./app install --immutable
 
       - name: Build Frontend
         id: build-frontend
