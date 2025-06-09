@@ -28,6 +28,12 @@ jobs:
       - name: ls cache folder
         run: ls -la ${{ steps.cache-folder.outputs.stdout }}
 
+      - name: ls berry cache folder
+        run: ls -la ~/.yarn/berry/cache
+
+      - name: ls .yarn folder
+        run: ls -la .yarn && ls -la ./app/.yarn
+
       - name: Yarn Install
         id: yarn-install
         run: yarn --cwd ./app install --immutable
