@@ -26,3 +26,4 @@ vite.config.ts.timestamp-*
 storybook-static
 coverage
 .pnp.cjs
+.pnp.loader.mjs
