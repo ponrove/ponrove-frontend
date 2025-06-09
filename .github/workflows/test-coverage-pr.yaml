@@ -20,7 +20,9 @@ jobs:
           cache: "yarn"
           cache-dependency-path: app/yarn.lock
 
-      # TODO: Test frontend
+      - name: Yarn Install
+        id: yarn-install
+        run: yarn --cwd ./app install
 
       - name: Build Frontend
         id: build-frontend
@@ -72,7 +74,7 @@ jobs:
               })
             }
 
-  backend:
+  filserver:
     runs-on: ubuntu-latest
     needs: frontend
     permissions:
