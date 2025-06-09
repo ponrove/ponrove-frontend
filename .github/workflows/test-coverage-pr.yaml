@@ -13,23 +13,10 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
-        # Temporary to test the cache config
-      - name: Cache Folder
-        id: cache-folder-1
-        run: yarn config get cacheFolder
-
       - name: Set Node.js 24.x
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 24.x
-
-        # Temporary to test the cache config
-      - name: Cache Folder
-        id: cache-folder-2
-        run: yarn config get cacheFolder
-        # Temporary to test the cache config
-      - name: ls cache folder
-        run: ls -la ${{ steps.cache-folder.outputs.stdout }}
 
       - name: Yarn Install
         id: yarn-install
@@ -102,6 +89,10 @@ jobs:
       - name: Build Server
         id: build-server
         run: go build -v -a -installsuffix cgo -o runtime_binary ./cmd/server
+      - name: Test with the Go CLI
+        if: always()
+        id: test
+        run: go test -coverprofile=unit.coverage.out ./...
       - name: Upload coverage report
         if: always()
         id: coverage
