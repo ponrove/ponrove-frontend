@@ -32,7 +32,7 @@ export default ts.config(
         projectService: true,
         extraFileExtensions: [".svelte"],
         parser: ts.parser,
-        svelteConfig,
+        svelteConfig: svelteConfig,
       },
     },
   },
