@@ -5,8 +5,8 @@ go 1.24.3
 require (
 	github.com/danielgtaylor/huma/v2 v2.32.0
 	github.com/go-chi/chi/v5 v5.2.1
-	github.com/ponrove/configura v1.0.0-rc.3
-	github.com/ponrove/ponrunner v1.0.0-rc.6
+	github.com/ponrove/configura v1.0.0-rc.4
+	github.com/ponrove/ponrunner v1.0.0-rc.7
 	github.com/rs/zerolog v1.34.0
 	github.com/stretchr/testify v1.10.0
 )
