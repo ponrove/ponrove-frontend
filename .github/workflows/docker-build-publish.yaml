@@ -10,8 +10,39 @@ env:
   REGISTRY_IMAGE: rg.fr-par.scw.cloud/${{ github.repository_owner }}/${{ github.event.repository.name }}
 
 jobs:
+  build-frontend:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Set Node.js 24.x
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.x
+
+      - name: Yarn Install
+        id: yarn-install
+        run: yarn --cwd ./app install --immutable
+
+      - name: Build Frontend
+        id: build-frontend
+        run: yarn --cwd ./app build
+
+      - name: Upload Frontend Build
+        uses: actions/upload-artifact@6027e3dd177782cd8ab9af838c04fd81a07f1d47
+        with:
+          name: frontend_build
+          path: ./app/build
+
   build:
     runs-on: ubuntu-latest
+    needs:
+      - build-frontend
     strategy:
       fail-fast: false
       matrix:
@@ -25,6 +56,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+
+      - name: Download Frontend Build
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: frontend_build
+          path: ./app/build
+
       - name: Prepare
         run: |
           platform=${{ matrix.platform }}
