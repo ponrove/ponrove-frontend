@@ -14,7 +14,9 @@ import (
 
 func newDefaultConfig() *configura.ConfigImpl {
 	cfg := configura.NewConfigImpl()
-	cfg.RegString[WEBCLIENT_APP_BUILD_DIR] = "./_build"
+	configura.WriteConfiguration(cfg, map[configura.Variable[string]]string{
+		WEBCLIENT_APP_BUILD_DIR: "./_build",
+	})
 	return cfg
 }
 

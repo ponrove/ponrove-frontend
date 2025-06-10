@@ -45,10 +45,10 @@ github.com/open-feature/go-sdk-contrib/providers/ofrep v0.1.5/go.mod h1:jrD4UG3Z
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/ponrove/configura v1.0.0-rc.3 h1:vgczgpWTOah0FJXBmhatP1ssOwja9oBPfMviEPPn2WQ=
-github.com/ponrove/configura v1.0.0-rc.3/go.mod h1:0B+ovIBFDeMftiGdjxEWjuOalXv45DK73IwzYA/2PmM=
-github.com/ponrove/ponrunner v1.0.0-rc.6 h1:ZYxhvXoXyYnHTzVCE7j3bihTBHwsHMeRbZjexJJ9rzA=
-github.com/ponrove/ponrunner v1.0.0-rc.6/go.mod h1:wNJwgKM1FKj9URkpYaQk5SFFIylihLhJ+1E9P/P8Pxk=
+github.com/ponrove/configura v1.0.0-rc.4 h1:w8f6fxvxSNvZKxPW4dN59IbPnllBPLKKw+GNz8HI5oI=
+github.com/ponrove/configura v1.0.0-rc.4/go.mod h1:0B+ovIBFDeMftiGdjxEWjuOalXv45DK73IwzYA/2PmM=
+github.com/ponrove/ponrunner v1.0.0-rc.7 h1:U2sz39jQ6RBOATHgiaMtAes0WyGb+609ojnwgdYuYkM=
+github.com/ponrove/ponrunner v1.0.0-rc.7/go.mod h1:x5BkKxu7qpcd7lI0EZKQ42WQhHbVRePz0bSQBJNhsrA=
 github.com/rogpeppe/go-internal v1.14.1 h1:UQB4HGPB6osV0SQTLymcB4TgvyWu6ZyliaW0tI/otEQ=
 github.com/rogpeppe/go-internal v1.14.1/go.mod h1:MaRKkUm5W0goXpeCfT7UZI6fk/L7L7so1lCWt35ZSgc=
 github.com/rs/xid v1.6.0/go.mod h1:7XoLgs4eV+QndskICGsho+ADou8ySMSjJKDIan90Nz0=

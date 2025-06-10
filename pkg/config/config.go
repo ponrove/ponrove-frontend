@@ -45,5 +45,5 @@ func New() configura.Config {
 		configura.LoadEnvironment(serverConfigInstance, webclient.WEBCLIENT_APP_BUILD_DIR, "./app/build")
 	}
 
-	return *serverConfigInstance
+	return serverConfigInstance
 }
