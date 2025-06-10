@@ -3,7 +3,6 @@ WORKDIR /workspace
 ENV CGO_ENABLED=0
 ENV GOOS=linux
 COPY . .
-COPY --from=node-builder /workspace/build/ /workspace/pkg/webclient/build/
 RUN ls -al pkg/webclient
 RUN go build -a -installsuffix cgo -o runtime_binary ./cmd/server
 
